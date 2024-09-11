@@ -14,26 +14,26 @@ public class User {
     }
 
     private String encrypt(String pwd){
-        String encrypted = "";
+        StringBuilder encrypted = new StringBuilder();
         for(char ch:pwd.toCharArray()){
-            encrypted += (char)(ch + 1);
+            encrypted.append((char) (ch + 1));
         }
-        return encrypted;
+        return encrypted.toString();
     }
 
-    public String getname(){
-        return this.userName;
+    public String getName(){
+        return userName;
     }
 
     public String getID(){
-        return this.userID;
+        return userID;
     }
 
     public String getRole() {
         return role;
     }
 
-    public boolean checkpwd(String pwd){
+    public boolean checkPwd(String pwd){
         return this.password.equals(encrypt(pwd));
     }
 }

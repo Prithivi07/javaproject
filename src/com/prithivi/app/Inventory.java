@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Inventory {
-    private ArrayList<User> users = new ArrayList<>();
-    private ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<User> users = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
 
     public Inventory(User adminuser){
         this.users.add(adminuser);
@@ -18,30 +18,30 @@ public class Inventory {
         System.out.println("Enter Password: ");
         String pwd = sc.nextLine();
 
-        for(User i:users){
-            if(id.equals(i.getID()) && i.checkpwd(pwd)){
+        for(User user:users){
+            if(id.equals(user.getID()) && user.checkPwd(pwd)){
                 System.out.println("Logged in successfully");
-                return i;
+                return user;
             }
         }
         return null;
     }
 
-    public ArrayList<User> getUser(){
-        return this.users;
-    }
-
     public void loginOperation(){
         User loguser = login();
+        if(loguser!=null){
         switch(loguser.getRole()){
             case "admin":
-                ((Admin) loguser).adminops(this.users);
+                ((Admin) loguser).adminOps(this.users);
                 break;
             case "manager":
-                ((Manager) loguser).mngOps();
+                ((Manager) loguser).mngOps(this.items);
                 break;
             case "customer":
                 break;
+        }}
+        else{
+            System.out.println("Incorrect user id or password");
         }
     }
 }

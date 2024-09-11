@@ -14,8 +14,6 @@ public class Shopping {
                     break;
                 case 0:
                     return;
-                default:
-                    System.out.print("Enter a valid choice");
             }
         }
     }
