@@ -10,6 +10,7 @@ public class Inventory {
     public Inventory(User adminuser){
         this.users.add(adminuser);
     }
+
     private User login(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter UserID: ");
@@ -33,8 +34,14 @@ public class Inventory {
     public void loginOperation(){
         User loguser = login();
         switch(loguser.getRole()){
-            case "admin" ->
-                    ((Admin) loguser).adminops(this.users);
+            case "admin":
+                ((Admin) loguser).adminops(this.users);
+                break;
+            case "manager":
+                ((Manager) loguser).mngOps();
+                break;
+            case "customer":
+                break;
         }
     }
 }
